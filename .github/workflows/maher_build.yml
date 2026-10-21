@@ -14,6 +14,9 @@ jobs:
         with:
           flutter-version: '3.24.0'
           channel: stable
+      # ✅ إصلاح: إكمال مشروع أندرويد الناقص (مجلد android/ والأذونات)
+      - name: Complete missing Android project files
+        run: flutter create . --platforms android --org com.maher --project-name $(grep '^name:' pubspec.yaml | awk '{print $2}')
       - run: flutter pub get
       - run: flutter build apk --release
       - name: Release APK
